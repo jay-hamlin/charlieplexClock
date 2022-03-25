@@ -1,0 +1,151 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red251\green2\blue7;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c100000\c14913\c0;\cssrgb\c0\c0\c0;
+}
+\margl1440\margr1440\vieww16760\viewh15460\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 7 segment clock using LED filaments.\
+Last update 24, March 2022.\
+Jay Hamlin\
+\
+
+\f1\b HISTORY
+\f0\b0 \
+The inspiration for this project came from one of Big Clive\'92s YouTube videos in which he was showing low voltage LED filaments. This was new to me, I didn\'92t know that there were LED filaments that ran on 3 Volts. I bought some 38mm white, 3 Volt filaments on AliExpress and soldered them together as a 7 segment digit on a prototyping board just to see what they would look like. It looked ok but I didn\'92t know what I would do with it.  Later I bought some 20mm red filaments , their color is more red-orange which reminded me of neon.  The LED Nixie tube was born!\
+\
+My first take on the LED nixie was to solder 7 segments together in free space using heavy gauge wires for the supports on the bottom segments and the finest wire I could find (10um diameter!) for the others thinking this would look most like a Nixie tube. It looked good but the 10um wire was very difficult to work with and it took forever to hand solder the segments. I didn\'92t think I could make any two that looked alike even after making a simple jig to hold the segments in place.\
+\
+I tried putting the hand made digit into a small glass jar as the first try at making the tube part of the Nixie tube. It worked but the shape of the jar wasn\'92t very good, not so tube like.  Then I had the idea to use a laboratory test tube with a rounded end.  You can get test tubes made from plastic on Amazon for cheap - the product description says that the tubes are 2 liter soda bottles before they have been expanded.  Perfect!\
+\
+Then I decided that it would be ok to use a black pcb to hold the segments, this way every digit would come out the same and it would be much easier to assemble so I made a pcb sized to fit inside the test tube. I used OSHPark to fab the boards using their After Dark service for the black substrate.\
+\
+By the way, the 20mm filaments have an active (light emitting) length of only 11mm. I made the pcb with solder pads 14mm apart and a slot for the LED 11.5mm long by 2.0mm wide. This size works really well although you do have to trim some of the extra metal off of the ends of the filament and trim the silicone just a bit with an Exacto knife.\
+\
+The clock is my way of showing off the LED Nixie tubes with something interesting.  What else would I have made? A frequency counter perhaps but the clock seemed more useful.  I choose Adafruit\'92s HUZZAH32 Feather board with the ESP32 because it had WiFi and I could program it in circuit python which sounded like something which would be good to learn.  When I got into it, I ended up porting the Arduino Uno single digit code to the ESP32 and the 6 74LV595 shift registers and had a working Arduino project before I could even start with the circuit python. So, Arduino it is, circuit python for some other day!\
+\
+
+\f1\b CHARLIEPLEXING
+\f0\b0 \
+	wiki entry: {\field{\*\fldinst{HYPERLINK "https://en.wikipedia.org/wiki/Charlieplexing"}}{\fldrslt https://en.wikipedia.org/wiki/Charlieplexing}}\
+	YouTube explainer: {\field{\*\fldinst{HYPERLINK "https://youtu.be/Bx5GLyJSWPk"}}{\fldrslt https://youtu.be/Bx5GLyJSWPk}}\
+\
+Why did I use Charlieplexing for this project? Because I wanted the segments to be as close to each other as possible - connecting them together at each intersection was the simplest and most direct method. Also, the prototype digit was made without any pcb, the solder connections were also the mechanical mounting points of the segments, they couldn\'92t be wired in the more conventional common cathode or common anode arrangement and hold together.\
+\
+
+\f1\b HARDWARE
+\f0\b0 \
+The schematics and pcb were designed in KiCAD 5.1.12.  There are 2 projects, one for the digit pcb and another for the main board.  \
+\
+A complete clock is made up of 3 boards:\
+	1- One main pcb\
+	2- Six digit pcbs which plug into the main pcb at J3, J4, J6, J7, J9 and J10.\
+	3- Two colon pcbs which plug into the main pcb at J5 and J8. \
+\
+	
+\f1\b DIGIT PCB:
+\f0\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf2 \CocoaLigature0 		\cf3 KiCAD_Project/7SegmentCharlie.pro\cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \CocoaLigature1 		The digit pcb schematic PDF is: 
+\f2\fs22 \cf3 \CocoaLigature0 KiCAD_Project/7segmentCharlie.pdf
+\f0\fs24 \cf0 \CocoaLigature1 \
+	
+\f1\b MAIN BOARD:
+\f0\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf2 \CocoaLigature0 		\cf3 KiCAD_Project/6DigitCharlieplex.pro\cf2 \
+		
+\f0\fs24 \cf0 \CocoaLigature1 The main board pcb schematic PDF is: 
+\f2\fs22 \cf3 \CocoaLigature0 KiCAD_Project/ClockSchematic_02232222.pdf\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b\fs24 \cf4 	COLON PCB:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\b0 \cf3 \CocoaLigature1 		/Documentation/colon_dim_drawing.pdf
+\f0 \cf0  \
+		There are no KiCAD files for the colons, these were hand made from prototyping boards. The \'93schematic\'94 is in the drawing file.\
+\
+	
+\f1\b BILL OF MATERIALS:
+\f0\b0 \
+		
+\f2\fs22 \cf3 \CocoaLigature0 KiCAD_Project/BOM_03232022.xlsx
+\f0\fs24 \cf0 \CocoaLigature1 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b \cf0 DOCUMENTS
+\f0\b0 \
+	
+\f2 \cf3 /Documentation/Arduino_Proto_7seg_Display.pdf\cf0 \
+
+\f0 	The original schematic for the Arduino Uno digit prototype. Note that the LED for segment D is shown backwards, I actually had it this way at first but then realized all the horizontal segments should all go in the same direction. In fact, by having all the segments in the same direction, the port bits never needed to be in the tri-state state, just \'911\'92 or \'910\'92 would work which is important in the final clock which uses \'91595 shift registers.\
+	
+\f2 \cf3 /Documentation/Charlieplex_digit_decoder.pdf
+\f0 \cf0  \
+	Explanation of how each digit connects to the 74LV595 shift register and the values software writes to produce numbers.\
+	
+\f2 \cf3 /Documentation/mlb_dim_drawing2.pdf
+\f0 \cf0  \
+	A dimensioned drawing of the main board.\
+	
+\f2 \cf3 /Documentation/digit_dim_drawing.pdf
+\f0 \cf0  \
+	A dimensioned drawing of the digit board.\
+	
+\f2 \cf3 /Documentation/colon_dim_drawing.pdf
+\f0 \cf0  \
+	A dimensioned drawing of the colon board.\
+\
+
+\f1\b SOFTWARE
+\f0\b0 \
+There are 2 Arduino projects as follows:\
+	
+\f3\b\fs22 \cf2 \CocoaLigature0 Arduino/charley7/
+\f2\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 	Charlie7 is the single digit prototype project running on an Arduino Uno.\
+	The Charlie7 digit schematic is\cf3  Documentation/Arduino_Proto_7seg_Display.pdf\cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \CocoaLigature1 \
+	
+\f3\b\fs22 \cf4 \CocoaLigature0 Arduino/FilamentClock_ESP32/
+\f0\b0\fs24 \cf0 \CocoaLigature1 \
+ 	FilamentClock_ESP32 is the full clock project. It uses the Adafruit HUZZAH32 ESP32 Feather board module. Follow the instructions on Adafruit for getting the HUZZAH32 running with Arduino here: {\field{\*\fldinst{HYPERLINK "https://learn.adafruit.com/adafruit-huzzah32-esp32-feather/using-with-arduino-ide"}}{\fldrslt https://learn.adafruit.com/adafruit-huzzah32-esp32-feather/using-with-arduino-ide}}\
+\
+
+\f1\b LINKS TO LED FILAMENTS:
+\f0\b0 \
+\
+20mm, 3V, 100mA used in this project: {\field{\*\fldinst{HYPERLINK "https://www.aliexpress.com/item/1005003509056672.html?spm=a2g0o.order_list.0.0.21ef18028wNrUJ"}}{\fldrslt 20mm Filament}}. These come in white, red, green, blue and pink. I used the red ones for my project, they look more orange to me which is how I got the Nixie tube inspiration. This is a 6 digit clock which uses 7 filaments per digit or 42 filaments total.\
+\
+The original prototype Charlieplexed 7 segment digit used 38mm filaments: {\field{\*\fldinst{HYPERLINK "https://www.aliexpress.com/item/4000478265055.html?spm=a2g0o.productlist.0.0.76734cecq6TOtS&algo_pvid=ce54747e-3cf3-4cd9-b076-45d113f13ed7&algo_exp_id=ce54747e-3cf3-4cd9-b076-45d113f13ed7-0&pdp_ext_f=%7B%22sku_id%22%3A%2210000013684146803%22%7D&pdp_pi=-1%3B3.95%3B-1%3B-1%40salePrice%3BUSD%3Bsearch-mainSearch"}}{\fldrslt 38mm filament}}. I could have made the clock using these but they seemed just a little too big.\
+\
+I have also played with 130mm filaments I call \'93LED spaghetti\'94 but haven\'92t attempted to make anything with them. Still, they look cool. {\field{\*\fldinst{HYPERLINK "https://www.aliexpress.com/item/1005001685226898.html?spm=a2g0o.order_list.0.0.21ef18028wNrUJ"}}{\fldrslt LED Spaghetti}}\
+\
+
+\f1\b ACRYLIC \'93TUBES\'94
+\f0\b0 \
+	I used 25mm diameter plastic test tubes from Amazon then cut them to the size I wanted.\
+		Amazon link: {\field{\*\fldinst{HYPERLINK "https://www.amazon.com/dp/B07RX6HQPB?psc=1&ref=ppx_yo2_dt_b_product_details"}}{\fldrslt https://www.amazon.com/dp/B07RX6HQPB?psc=1&ref=ppx_yo2_dt_b_product_details}}\
+\
+
+\f1\b GIT NOTES
+\f0\b0 \
+	git status\
+	git add <file>\
+	git rm <file>\
+	git commit -m \'93chekin comment\'94\
+	git push -u origin master\
+}

@@ -1,0 +1,182 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:LED D3
+U 1 1 62004F8C
+P 5650 2550
+F 0 "D3" H 5643 2295 50  0000 C CNN
+F 1 "LED" H 5643 2386 50  0000 C CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 5650 2550 50  0001 C CNN
+F 3 "~" H 5650 2550 50  0001 C CNN
+	1    5650 2550
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED D4
+U 1 1 62005795
+P 5650 3250
+F 0 "D4" H 5643 2995 50  0000 C CNN
+F 1 "LED" H 5643 3086 50  0000 C CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 5650 3250 50  0001 C CNN
+F 3 "~" H 5650 3250 50  0001 C CNN
+	1    5650 3250
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED D5
+U 1 1 62005E2B
+P 5650 3950
+F 0 "D5" H 5643 3695 50  0000 C CNN
+F 1 "LED" H 5643 3786 50  0000 C CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 5650 3950 50  0001 C CNN
+F 3 "~" H 5650 3950 50  0001 C CNN
+	1    5650 3950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 62006069
+P 5200 2900
+F 0 "D1" V 5239 2782 50  0000 R CNN
+F 1 "LED" V 5148 2782 50  0000 R CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 5200 2900 50  0001 C CNN
+F 3 "~" H 5200 2900 50  0001 C CNN
+	1    5200 2900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:LED D2
+U 1 1 62006FB2
+P 5200 3600
+F 0 "D2" V 5300 3500 50  0000 R CNN
+F 1 "LED" V 5200 3500 50  0000 R CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 5200 3600 50  0001 C CNN
+F 3 "~" H 5200 3600 50  0001 C CNN
+	1    5200 3600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:LED D7
+U 1 1 62007092
+P 6100 3550
+F 0 "D7" V 6150 3800 50  0000 R CNN
+F 1 "LED" V 6050 3800 50  0000 R CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 6100 3550 50  0001 C CNN
+F 3 "~" H 6100 3550 50  0001 C CNN
+	1    6100 3550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:LED D6
+U 1 1 620071E3
+P 6100 2900
+F 0 "D6" V 6139 2782 50  0000 R CNN
+F 1 "LED" V 6048 2782 50  0000 R CNN
+F 2 "7SegmentCharlie:LEDFilament_12mm" H 6100 2900 50  0001 C CNN
+F 3 "~" H 6100 2900 50  0001 C CNN
+	1    6100 2900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5500 2550 5200 2550
+Wire Wire Line
+	5200 2550 5200 2750
+Wire Wire Line
+	5800 2550 6100 2550
+Wire Wire Line
+	6100 2550 6100 2750
+Wire Wire Line
+	6100 3050 6100 3250
+Wire Wire Line
+	6100 3700 6100 3950
+Wire Wire Line
+	6100 3950 5800 3950
+Wire Wire Line
+	5500 3950 5200 3950
+Wire Wire Line
+	5200 3950 5200 3750
+Wire Wire Line
+	5200 3450 5200 3250
+Wire Wire Line
+	5500 3250 5200 3250
+Connection ~ 5200 3250
+Wire Wire Line
+	5800 3250 6100 3250
+Connection ~ 6100 3250
+Connection ~ 5200 2550
+Wire Wire Line
+	5200 3050 5200 3250
+Wire Wire Line
+	6100 3250 6100 3400
+Wire Wire Line
+	6100 3250 6250 3250
+Wire Wire Line
+	5200 3250 5050 3250
+Wire Wire Line
+	5050 3250 5050 4300
+Wire Wire Line
+	4950 2550 4950 4400
+Wire Wire Line
+	6100 2550 6350 2550
+Connection ~ 6100 2550
+Wire Wire Line
+	4950 2550 5200 2550
+Wire Wire Line
+	5700 4200 6100 4200
+Wire Wire Line
+	6100 4200 6100 3950
+Connection ~ 6100 3950
+Wire Wire Line
+	5200 4200 5200 3950
+Wire Wire Line
+	5200 4200 5600 4200
+Connection ~ 5200 3950
+Wire Wire Line
+	5500 4300 5050 4300
+Wire Wire Line
+	5800 4300 5800 4500
+Wire Wire Line
+	5700 4200 5700 4500
+Wire Wire Line
+	5600 4500 5600 4200
+Wire Wire Line
+	5500 4500 5500 4300
+$Comp
+L Connector:Conn_01x06_Female J1
+U 1 1 6200B942
+P 5600 4700
+F 0 "J1" V 5492 4175 50  0000 C CNN
+F 1 "Conn_01x06_Female" V 5700 4600 50  0000 C CNN
+F 2 "7SegmentCharlie:PinHeader_1x06_P2.54mm_NoSilk" H 5600 4700 50  0001 C CNN
+F 3 "~" H 5600 4700 50  0001 C CNN
+	1    5600 4700
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	6350 2550 6350 4400
+Wire Wire Line
+	6250 3250 6250 4300
+Wire Wire Line
+	6250 4300 5800 4300
+Wire Wire Line
+	5900 4400 6350 4400
+Wire Wire Line
+	5900 4400 5900 4500
+Wire Wire Line
+	4950 4400 5400 4400
+Wire Wire Line
+	5400 4400 5400 4500
+$EndSCHEMATC
